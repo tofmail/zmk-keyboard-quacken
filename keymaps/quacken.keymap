@@ -1,13 +1,13 @@
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
+include <behaviors.dtsi>
+include <dt-bindings/zmk/keys.h>
 
 
 /**
  * Timing is key.
  */
 
-#define TAPPING_TERM 300
-#include "timing.dtsi"
+define TAPPING_TERM 300
+include "timing.dtsi"
 
 
 /**
@@ -17,7 +17,7 @@
 // Home row mods (use at most one)
 // #define DUAL_KEYS NO_DUAL_KEYS
 // #define DUAL_KEYS LAYER_TAPS
-// #define DUAL_KEYS HOME_ROW_MODS  // (default value, if none are specified)
+// define DUAL_KEYS HOME_ROW_MODS  // (default value, if none are specified)
 // #define DUAL_KEYS HOME_ROW_MODS_VIM
 
 // Extra bits of config (maybe a bit debatable)
@@ -27,25 +27,25 @@
 // Human readable constants for the layer indexes.
 // Make sure to update this table if you edit the order / amount
 // of layers in the keymap.
-#define BASE_LAYER     0
-#define SYMBOLS_LAYER  1
-#define NUM_ROW_LAYER  2
-#define NUM_NAV_LAYER  3
-#define VIM_NAV_LAYER  4
-#define FUNCTION_LAYER 5
-#define EXTRA_LAYER    6
+define BASE_LAYER     0
+define SYMBOLS_LAYER  1
+define NUM_ROW_LAYER  2
+define NUM_NAV_LAYER  3
+define VIM_NAV_LAYER  4
+define FUNCTION_LAYER 5
+define EXTRA_LAYER    6
 
-#include "dual_keys.dtsi"
+include "dual_keys.dtsi"
 
 
 /**
  * Layout-specific actions and symbols.
  */
 
-#define CMD RC // PC
+define CMD RC // PC
 // #define CMD RG // Mac
 
-#include "aliases.h"
+include "aliases.h"
 
 
 / {
