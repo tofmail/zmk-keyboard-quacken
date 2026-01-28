@@ -6,8 +6,8 @@
  * Timing is key.
  */
 
-define TAPPING_TERM 300
-include "timing.dtsi"
+#define TAPPING_TERM 300
+#include "timing.dtsi"
 
 
 /**
@@ -35,7 +35,7 @@ define VIM_NAV_LAYER  4
 define FUNCTION_LAYER 5
 define EXTRA_LAYER    6
 
-include "dual_keys.dtsi"
+#include "dual_keys.dtsi"
 
 
 /**
@@ -45,7 +45,7 @@ include "dual_keys.dtsi"
 define CMD RC // PC
 // #define CMD RG // Mac
 
-include "aliases.h"
+#include "aliases.h"
 
 
 / {
