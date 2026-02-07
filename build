@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 TARGET=$1
 shift
+IFS=";"
 CPP_FLAGS=$*
+IFS=" "
 
 # uncomment the following line to enable USB logging
 USB_LOGGING="-S zmk-usb-logging"
@@ -32,10 +34,17 @@ test)
 *)
 	echo "Usage:"
 	echo "    $0 TARGET [optional_C++_flags]"
+	echo
 	echo "where TARGET can be:"
 	echo "    - flex: Quacken Flex 25.10+ / embedded RP2040"
 	echo "    - zero: Quacken Zero 25.07+ / SparkFun Pro Micro RP2040"
 	echo "    - test: dummy tester shield / SparkFun Pro Micro RP2040"
+	echo
+	echo "[optional_C++_flags] are defined in keymaps/quacken.keymap:"
+	echo "    - layout (qwerty by default): KB_LAYOUT_{ERGOL,AZERTY,QWERTY_LAFAYETTE...}"
+	echo "    - hold-taps (HRM by default): HT_{NONE,THUMB_TAPS,HOME_ROW_MODS}  "
+	echo "    - options: VIM_NAVIGATION, LEFT_HAND_SPACE, HRM_SHIFT, MACOS"
+	echo
 	exit 1
 	;;
 esac
@@ -52,8 +61,8 @@ fi
 cd $ZMK_APP_DIR
 source ../.venv/bin/activate
 west build $PRISTINE $USB_LOGGING $BOARD -- $SHIELD \
-	-DZMK_EXTRA_MODULES="$SCRIPT_DIR" \
 	-DKEYMAP_FILE="$SCRIPT_DIR/keymaps/quacken.keymap" \
+	-DZMK_EXTRA_MODULES="$SCRIPT_DIR" \
 	-DDTS_EXTRA_CPPFLAGS="$CPP_FLAGS" && {
 
 	OUTPUT_FILE="zmk_quacken_$TARGET.uf2"
@@ -61,5 +70,4 @@ west build $PRISTINE $USB_LOGGING $BOARD -- $SHIELD \
 	echo
 	echo "Successfully generated: $OUTPUT_FILE"
 	echo "                        \\_o<"
-	grep CONFIG_ZMK_USB $ZMK_APP_DIR/build/zephyr/.config
 }
